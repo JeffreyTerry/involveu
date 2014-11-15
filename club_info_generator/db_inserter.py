@@ -12,10 +12,7 @@ while club_index != -1:
     contactname = clubs[clubs.index('\\contactname\\', club_index) + 13:clubs.index('\\endcontactname\\', club_index)]
     contactemail = clubs[clubs.index('\\contactemail\\', club_index) + 14:clubs.index('\\endcontactemail\\', club_index)]
     groups.insert({'name': name, 'purpose': purpose, 'contactemail': contactemail, 'contactname': contactname})
-    print name
-    print purpose
-    print contactname
-    print contactemail
+    print name, purpose, contactname, contactemail
     if club_index + 1 < len(clubs):
         club_index = clubs.index('\\org\\', club_index + 1)
 
