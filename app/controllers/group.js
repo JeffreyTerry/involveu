@@ -1,6 +1,7 @@
 var Group = require('../models/group').model;
 
 exports.findGroups = function(query, res) {
+  console.log(query);
   Group.find({}, function(err, objects) {
     if(err) {
       res.status(500).json({'err': err});
@@ -10,7 +11,7 @@ exports.findGroups = function(query, res) {
   });
 };
 
-exports.createGroup = function(name, purpose, contact_person, contact_email) {
+exports.createGroup = function(name, purpose, contact_person, contact_email, res) {
   var group = new Group({'name': name, 'purpose': purpose, 'contact_person': contact_person, 'contact_email': contact_email});
   group.save(function(err, obj) {
     if(err) {
@@ -21,7 +22,13 @@ exports.createGroup = function(name, purpose, contact_person, contact_email) {
   });
 };
 
-exports.remove = function(id, cb) {
-  Group.findByIdAndRemove(id, cb);
+exports.remove = function(id, res) {
+  Group.findByIdAndRemove(function(err, obj) {
+    if(err) {
+      res.status(500).json({'err': err});
+    } else {
+      res.json({'group removed': obj});
+    }
+  });
 };
 

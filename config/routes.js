@@ -21,8 +21,17 @@ module.exports = function(app){
   });
 
   app.get('/groups', function(req, res) {
+    group.findGroups(req.body, res);
+  });
+
+  app.post('/groups/new', function(req, res) {
+    group.createGroup(req.body.name, req.body.purpose, req.body.contact_person, req.body.contact_email, res);
   });
 
   app.get('/events', function(req, res) {
+  });
+
+  app.post('/events/new', function(req, res) {
+    group.createGroup(req.body.name, req.body.time, req.body.duration, req.body.location, req.body.group_id, res);
   });
 };
