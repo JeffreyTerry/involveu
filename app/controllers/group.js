@@ -1,8 +1,7 @@
 var Group = require('../models/group').model;
 
-exports.findGroups = function(query, res) {
-  console.log(query);
-  Group.find({}, function(err, objects) {
+exports.findGroups = function(res) {
+  Group.find().limit(20).exec(function(err, objects) {
     if(err) {
       res.status(500).json({'err': err});
     } else {

@@ -1,7 +1,6 @@
 var Event = require('../models/event').model;
 
-exports.findEvents = function(query, res) {
-  console.log(query);
+exports.findEvents = function(res) {
   Event.find({}, function(err, objects) {
     if(err) {
       res.status(500).json({'err': err});
