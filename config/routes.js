@@ -1,5 +1,6 @@
 var _ = require('underscore'),
-    group = require('../app/controllers/group');
+    group = require('../app/controllers/group'),
+    event = require('../app/controllers/event');
 
 // Stores a dictionary with route paths as keys and their corresponding static html files as values.
 var URLToFileMap = {
@@ -21,7 +22,7 @@ module.exports = function(app){
   });
 
   app.get('/groups', function(req, res) {
-    group.findGroups(req.body, res);
+    group.findGroups(res);
   });
 
   app.post('/groups/new', function(req, res) {
@@ -29,9 +30,10 @@ module.exports = function(app){
   });
 
   app.get('/events', function(req, res) {
+    event.findEvents(res);
   });
 
   app.post('/events/new', function(req, res) {
-    group.createGroup(req.body.name, req.body.time, req.body.duration, req.body.location, req.body.group_id, res);
+    event.createEvent(req.body.name, req.body.time, req.body.duration, req.body.location, req.body.group_id, res);
   });
 };
